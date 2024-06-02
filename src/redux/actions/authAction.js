@@ -67,7 +67,7 @@ export const updateUserPassword = (body) => async (dispatch) => {
       `api/v1/users/resetPassword/`,
       body
     );
-    console.log(response);
+
     dispatch({
       type: UPDATE_USER_PASSWORD,
       payload: response,

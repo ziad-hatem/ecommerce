@@ -204,10 +204,24 @@ export const createProduct = (formatData) => async (dispatch) => {
 // //! get all products with pagination
 export const getAllProducts = () => async (dispatch) => {
   try {
+    //! burada limit ne?
+    // const response = await useGetData(`api/v1/products?limit=${limit}`);
+
+    //! linki degistirdim
+    // const response = await useGetData(`api/v1/products?limit=${limit}`);
     const response = await useGetData(`api/v1/products`);
-    dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data });
-  } catch (error) {
-    dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
+    //! bitti
+
+    dispatch({
+      type: GET_ALL_PRODUCTS,
+      payload: response,
+      loading: true,
+    });
+  } catch (e) {
+    dispatch({
+      type: GET_ERROR,
+      payload: "Error " + e,
+    });
   }
 };
 

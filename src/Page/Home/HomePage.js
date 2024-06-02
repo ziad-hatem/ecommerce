@@ -5,11 +5,35 @@ import CardProductsContainer from "../../Components/Products/CardProductsContain
 import Silder from "./../../Components/Home/Silder";
 import DiscountSection from "./../../Components/Home/DiscountSection";
 import ViewHomeProductsHook from "./../../hook/products/ViewHomeProductsHook";
+import { Alert, Spinner } from "react-bootstrap";
 
 // import BrandFeatured from '../../Components/Brand/BrandFeatured';
 // import Footer from '../../Components/Uitily/Footer';
 const HomePage = () => {
-  const [items] = ViewHomeProductsHook();
+  const [items, loading, error] = ViewHomeProductsHook();
+
+  if (loading) {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "670px" }}
+      >
+        <Spinner animation="border" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "670px" }}
+      >
+        <Alert variant="danger">{error}</Alert>
+      </div>
+    );
+  }
+
   return (
     <div className="font" style={{ minHeight: "670px" }}>
       <HomeCategory />

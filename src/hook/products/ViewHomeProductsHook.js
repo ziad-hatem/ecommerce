@@ -1,21 +1,28 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions/productsAction";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { getData } from "../../hooks/useInsertData";
+import baseUrl from "../../Api/baeURL";
 
 const ViewHomeProductsHook = () => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getAllProducts());
-    }, []);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const allProducts = useSelector((state) => state.allProducts.allProducts);
-    // if (allProducts && allProducts.data) console.log("test" + allProducts.data);
-    //! bu bilgileri degiskende saklamam lazim
-    let items = [];
-    if (allProducts && allProducts.data) items = allProducts.data.slice(0, 4);
-    else items = [];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await baseUrl.get("/api/v1/products");
+        setItems(response.data.data.slice(0, 4));
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return [items];
+    fetchProducts();
+  }, []);
+  return [items, loading, error];
 };
 
 export default ViewHomeProductsHook;

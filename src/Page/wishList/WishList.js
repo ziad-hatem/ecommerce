@@ -20,7 +20,6 @@ const WishList = () => {
   useEffect(async () => {
     fetchWishLists();
   }, []);
-  console.log(wishLists);
 
   if (loading) {
     return (

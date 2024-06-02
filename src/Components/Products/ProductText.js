@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ViewProductDetailsHook from "../../hook/products/ViewProductDetailsHook";
 import useCart from "../../hook/cart/useCart";
-import { Button, Spinner } from "react-bootstrap";
+import { Alert, Button, Spinner } from "react-bootstrap";
 import useWishList from "../../hook/wishlist/useWishList";
 
 const ProductText = () => {
   const { id } = useParams();
-  const [item, images] = ViewProductDetailsHook(id);
+  const [item, loading, errors] = ViewProductDetailsHook(id);
   const { postWishList } = useWishList();
   // console.log(item);
   //! bizim API'de direkt category'ye erisebiliyoruz, ekstra islemlere gerek yok :)
@@ -19,15 +19,34 @@ const ProductText = () => {
     updateQuantity,
     removeFromCart,
     fetchCart,
-    loading,
     error,
     addLoading,
   } = useCart();
   const handleAddToWishlist = (productId) => {
     // Implement the logic to add the product to the wishlist
     postWishList({ productId });
-    console.log(`Product ${productId} added to wishlist`);
   };
+  if (loading) {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "670px" }}
+      >
+        <Spinner animation="border" />
+      </div>
+    );
+  }
+
+  if (errors) {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "670px" }}
+      >
+        <Alert variant="danger">{errors}</Alert>
+      </div>
+    );
+  }
   return (
     <main className="col-lg-12">
       <div className="ps-lg-3">

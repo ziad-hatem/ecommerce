@@ -12,6 +12,7 @@ const ShopProductsPage = () => {
     ViewSearchProductsHook();
   if (pagination) var pageCount = pagination;
   else pageCount = 0;
+
   return (
     <Container style={{ minHeight: "670px" }}>
       <section className="h-100 h-custom">
@@ -41,7 +42,7 @@ const ShopProductsPage = () => {
 
                               <Col lg="10">
                                 <CardProductsContainer
-                                  items={items}
+                                  products={items}
                                   title=""
                                   btntitle=""
                                 />

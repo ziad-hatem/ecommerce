@@ -4,6 +4,7 @@ import SubTiltle from "../Uitily/SubTiltle";
 import ProductCard from "./ProductCard";
 
 const CardProductsContainer = ({ title, btntitle, pathText, products }) => {
+  console.log(products);
   return (
     <Container
       className="py-4 p-5 mb-2"
