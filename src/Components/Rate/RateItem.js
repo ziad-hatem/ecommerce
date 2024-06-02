@@ -14,7 +14,7 @@ const RateItem = ({ rate }) => {
             height="16px"
             width="16px"
           />
-          <div className="cat-rate d-inline p-1 pt-2">4.3</div>
+          <div className="cat-rate d-inline p-1 pt-2">ّ{rate.rating}</div>
         </Col>
       </Row>
       <Row className="border-bottom mx-2">
