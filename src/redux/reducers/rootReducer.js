@@ -4,7 +4,7 @@ import categoryReducer from "./categoryReducer";
 import productsReducer from "./productsReducer";
 import userAddressesReducer from "./userAddressesReducer";
 
-export default combineReducers({
+export const rootReducer = combineReducers({
   allCategory: categoryReducer,
   allProducts: productsReducer,
   authReducer: authReducer,

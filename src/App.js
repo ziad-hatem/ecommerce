@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="font">
       <NavBarLogin />
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
