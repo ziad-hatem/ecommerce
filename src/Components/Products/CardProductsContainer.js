@@ -2,9 +2,10 @@ import React from "react";
 import { Container, Row } from "react-bootstrap";
 import SubTiltle from "../Uitily/SubTiltle";
 import ProductCard from "./ProductCard";
+import { getUniqueValues } from "../../hook/helpers/helper";
 
 const CardProductsContainer = ({ title, btntitle, pathText, products }) => {
-  console.log(products);
+  // const categories = getUniqueValues(products, "categoryId");
   return (
     <Container
       className="py-4 p-5 mb-2"

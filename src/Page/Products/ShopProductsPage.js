@@ -6,12 +6,12 @@ import Pagination from "../../Components/Uitily/Pagination";
 import SearchCountResult from "../../Components/Uitily/SearchCountResult";
 import SideFilter from "../../Components/Uitily/SideFilter";
 import ViewSearchProductsHook from "../../hook/products/ViewSearchProductsHook";
+import useFilterContext from "../../context/filter_Context";
 
 const ShopProductsPage = () => {
-  const [items, pagination, onPress, getProduct, results] =
-    ViewSearchProductsHook();
-  if (pagination) var pageCount = pagination;
-  else pageCount = 0;
+  const { filtered_Products } = useFilterContext();
+  // if (pagination) var pageCount = pagination;
+  // else pageCount = 0;
 
   return (
     <Container style={{ minHeight: "670px" }}>
@@ -42,7 +42,7 @@ const ShopProductsPage = () => {
 
                               <Col lg="10">
                                 <CardProductsContainer
-                                  products={items}
+                                  products={filtered_Products}
                                   title=""
                                   btntitle=""
                                 />
